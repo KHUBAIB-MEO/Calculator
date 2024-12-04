@@ -1,16 +1,21 @@
 import 'package:flutter/material.dart';
 
-Widget buttonWidget(
-    {required BuildContext context,
-    var action,
-    required int index,
-    var number1,
-    var operator,
-    var number2}) {
+Widget buttonWidget({
+  required BuildContext context,
+  var action,
+  required int index,
+  required String number1,
+  required String number2,
+  required String operant,
+  required void Function(String) onTap,
+}) {
   return Padding(
     padding: const EdgeInsets.all(5.0),
     child: GestureDetector(
-      onTap: () {},
+      onTap: () {
+        print(action);
+        onTap(action);
+      },
       child: Container(
         width: 90,
         height: 90,

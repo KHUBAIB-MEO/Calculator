@@ -37,11 +37,17 @@ class _HomeScreenState extends State<HomeScreen> {
     "="
   ];
 
-  // @override
-  // void initState() {
-  //   setState(() {});
-  //   super.initState();
-  // }
+  void calculate(String action) {
+    setState(() {
+      number1 = number1 + action;
+    });
+  }
+
+  @override
+  void initState() {
+    setState(() {});
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +78,14 @@ class _HomeScreenState extends State<HomeScreen> {
               physics: const NeverScrollableScrollPhysics(),
               itemBuilder: (context, index) {
                 return buttonWidget(
-                    context: context, action: data[index], index: index);
+                  context: context,
+                  action: data[index],
+                  index: index,
+                  number1: number1,
+                  number2: number2,
+                  operant: operant,
+                  onTap: calculate,
+                );
               },
             ),
           ),
