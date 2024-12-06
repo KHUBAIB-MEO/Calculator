@@ -46,14 +46,17 @@ class ContentScreen extends StatelessWidget {
                   scrollDirection: Axis.horizontal,
                   child: Padding(
                     padding: const EdgeInsets.all(15.0),
-                    child: Text(
-                      "$number1$operant$number2".isEmpty
-                          ? "0"
-                          : "$number1 $operant $number2",
-                      style: TextStyle(
-                        fontSize: 50,
-                        fontWeight: FontWeight.bold,
-                        color: Theme.of(context).colorScheme.tertiary,
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 65.0),
+                      child: Text(
+                        "$number1$operant$number2".isEmpty
+                            ? "0"
+                            : "$number1$operant$number2",
+                        style: TextStyle(
+                          fontSize: 50,
+                          fontWeight: FontWeight.bold,
+                          color: Theme.of(context).colorScheme.tertiary,
+                        ),
                       ),
                     ),
                   ),

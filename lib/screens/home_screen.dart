@@ -12,8 +12,8 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   String number1 = "";
   String operant = "";
+  String operantchar = "";
   String number2 = "";
-
   final List<dynamic> data = [
     "AC",
     "⌫",
@@ -38,20 +38,29 @@ class _HomeScreenState extends State<HomeScreen> {
   ];
 
   void calculate(String action) {
-    setState(() {
+    if (action != "." && int.tryParse(action) == null) {
+      if (operant.isNotEmpty && number2.isNotEmpty) {
+        //calculation
+      }
+      operant = action;
+    } else if (number1.isEmpty || operant.isEmpty) {
+      if (action == "." && number1.contains(".")) return;
+      if (action == "." && (number1.isEmpty || number1 == "0")) {
+        action = "0.";
+      }
       number1 = number1 + action;
-    });
-  }
-
-  @override
-  void initState() {
+    } else if (number2.isEmpty || operant.isNotEmpty) {
+      if (action == "." && number2.contains(".")) return;
+      if (action == "." && (number2.isEmpty || number2 == "0")) {
+        action = "0.";
+      }
+      number2 = number2 + action;
+    }
     setState(() {});
-    super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    //print("$number1   $number2  $operator");
     return Scaffold(
       body: Column(
         children: [
