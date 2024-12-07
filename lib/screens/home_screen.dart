@@ -37,7 +37,50 @@ class _HomeScreenState extends State<HomeScreen> {
     "="
   ];
 
+  void percentage() {
+    if (number1.isNotEmpty && operant.isNotEmpty && number2.isNotEmpty) {
+      // calculate equation//
+      //convert to percentage//
+    } else if (operant.isNotEmpty && number2.isEmpty) {
+      // 123+ this is the case
+      // error can not calculate
+    } else if (number1.isNotEmpty) {
+      final num = double.parse(number1);
+      setState(() {
+        operant = "";
+        number2 = "";
+        number1 = "${num / 100}";
+      });
+    }
+  }
+
+  void delete() {
+    if (number2.isNotEmpty) {
+      number2 = number2.substring(0, number2.length - 1);
+    } else if (operant.isNotEmpty) {
+      operant = operant.substring(0, operant.length - 1);
+    } else if (number1.isNotEmpty) {
+      number1 = number1.substring(0, number1.length - 1);
+    } else if (number1.isEmpty) {}
+    setState(() {});
+  }
+
   void calculate(String action) {
+    if (action == "⌫") {
+      delete();
+      return;
+    } else if (action == "AC") {
+      number1 = "";
+      number2 = "";
+      operant = "";
+      setState(() {});
+      return;
+    }
+    if (action == "%") {
+      percentage();
+      return;
+    }
+    if (action == "=") {}
     if (action != "." && int.tryParse(action) == null) {
       if (operant.isNotEmpty && number2.isNotEmpty) {
         //calculation
