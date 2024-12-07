@@ -5,7 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
 class SplashScreen extends StatefulWidget {
-  const SplashScreen({super.key});
+  final void Function(bool?) toggleTheme;
+  const SplashScreen({super.key, required this.toggleTheme});
 
   @override
   State<SplashScreen> createState() => _SplashScreenState();
@@ -18,7 +19,7 @@ class _SplashScreenState extends State<SplashScreen> {
       Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-            builder: (context) => const HomeScreen(),
+            builder: (context) => HomeScreen(toggleTheme: widget.toggleTheme),
           ));
     });
     super.initState();
