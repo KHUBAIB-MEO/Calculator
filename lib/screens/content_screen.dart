@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 
-class ContentScreen extends StatelessWidget {
+class ContentScreen extends StatefulWidget {
   final String number1;
   final String operant;
   final String number2;
-  final bool toggle = true;
   final void Function(bool?) toggleTheme;
   const ContentScreen(
       {super.key,
@@ -12,6 +11,14 @@ class ContentScreen extends StatelessWidget {
       required this.operant,
       required this.number2,
       required this.toggleTheme});
+
+  @override
+  State<ContentScreen> createState() => _ContentScreenState();
+}
+
+class _ContentScreenState extends State<ContentScreen> {
+  bool toggle = true;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,9 +32,10 @@ class ContentScreen extends StatelessWidget {
         children: [
           GestureDetector(
             onTap: () {
-              print("hello");
-              toggleTheme(toggle);
-              print("Khubaib $toggle");
+              widget.toggleTheme(toggle);
+              setState(() {
+                toggle = !toggle;
+              });
             },
             child: Padding(
               padding: const EdgeInsets.only(top: 60.0, left: 8),
@@ -56,9 +64,10 @@ class ContentScreen extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.only(top: 65.0),
                     child: Text(
-                      "$number1$operant$number2".isEmpty
+                      "${widget.number1}${widget.operant}${widget.number2}"
+                              .isEmpty
                           ? "0"
-                          : "$number1$operant$number2",
+                          : "${widget.number1}${widget.operant}${widget.number2}",
                       style: TextStyle(
                         fontSize: 50,
                         fontWeight: FontWeight.bold,

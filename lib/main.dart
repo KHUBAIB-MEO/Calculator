@@ -14,21 +14,17 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  ThemeData themeMode = lightMode; // Default to light mode
+  ThemeData themeMode = lightMode; // Default to theme
 
   void toggleTheme(bool? toggle) {
     setState(() {
-      print(toggle);
       if (toggle == true || toggle == null) {
-        print("enter");
         themeMode = lightMode;
-        toggle = false;
-        print(toggle);
       } else if (toggle == false) {
         themeMode = darkMode;
-        toggle = true;
       }
-      toggle = !toggle!;
+      /* toggle = !toggle!;
+      print(toggle);*/
     });
   }
 
